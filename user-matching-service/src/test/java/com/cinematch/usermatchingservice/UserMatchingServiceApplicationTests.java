@@ -1,10 +1,10 @@
-package com.mschippers.cinematchapi;
+package com.cinematch.usermatchingservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CinematchApiApplicationTests {
+class UserMatchingServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
