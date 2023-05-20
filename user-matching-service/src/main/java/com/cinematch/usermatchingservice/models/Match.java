@@ -63,11 +63,4 @@ public class Match {
         this.userId2 = userId2;
         this.status = status;
     }
-
-    // public Match(int userId1, int userId2, List<Preference> matchCriteria, Status status) {
-    //     this.userId1 = userId1;
-    //     this.userId2 = userId2;
-    //     this.matchCriteria = matchCriteria;
-    //     this.status = status;
-    // }
 }
