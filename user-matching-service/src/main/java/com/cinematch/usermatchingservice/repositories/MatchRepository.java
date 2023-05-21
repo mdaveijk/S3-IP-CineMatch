@@ -15,4 +15,6 @@ public interface MatchRepository extends MongoRepository<Match, Long> {
     List<Match> findByStatus(Status status);
     
     Match findById(@Param("id") String id);
+
+    List<Match> findAllByUserId(int userId);
 }
