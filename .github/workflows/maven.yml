@@ -16,19 +16,22 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        service: [user-matching-service]
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 11
+    - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Build ${{ matrix.service }} with Maven
+      run: mvn -B package --file ${{ matrix.service }}/pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
