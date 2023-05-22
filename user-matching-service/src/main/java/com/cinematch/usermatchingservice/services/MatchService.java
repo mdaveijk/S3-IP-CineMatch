@@ -9,25 +9,25 @@ import com.cinematch.usermatchingservice.repositories.MatchRepository;
 //TODO this entire class
 public class MatchService {
     
-    private List<Match> matches;
-    private MatchRepository matchRepository;
+    // private List<Match> matches;
+    // private MatchRepository matchRepository;
 
-    public MatchService(MatchRepository repository) {
-        this.matchRepository = repository;
-    }
+    // public MatchService(MatchRepository repository) {
+    //     this.matchRepository = repository;
+    // }
 
-    public List<Match> getAllMatchesByUser(int userId){
-    // Retrieve the matches associated with the user from the data source
+    // public List<Match> getAllMatchesByUser(int userId){
+    // // Retrieve the matches associated with the user from the data source
     
-    List<Match> matches = matchRepository.findAllByUserId(userId);
+    // List<Match> matches = matchRepository.findAllByUserId(userId);
     
-    // Return the matches
-    return matches;
-    }
+    // // Return the matches
+    // return matches;
+    // }
 
-    //find out whether the proposed user has been rejected before
-    public Boolean hasRejectedUserBefore(){
-        return true;
-    }
+    // //find out whether the proposed user has been rejected before
+    // public Boolean hasRejectedUserBefore(){
+    //     return true;
+    // }
 
 }
