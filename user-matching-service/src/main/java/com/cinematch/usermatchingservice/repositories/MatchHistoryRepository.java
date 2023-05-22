@@ -6,15 +6,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.data.repository.query.Param;
 
-import com.cinematch.usermatchingservice.enums.Status;
-import com.cinematch.usermatchingservice.models.Match;
+import com.cinematch.usermatchingservice.models.MatchHistory;
 
 @EnableMongoRepositories
-public interface MatchRepository extends MongoRepository<Match, Long> {
+public interface MatchHistoryRepository extends MongoRepository<MatchHistory, Long> {
 
-    List<Match> findByStatus(Status status);
+    List<MatchHistory> findByUserId1(@Param("id") int userId1);
     
-    Match findById(@Param("id") String id);
-
-    List<Match> findAllByUserId(int userId);
 }

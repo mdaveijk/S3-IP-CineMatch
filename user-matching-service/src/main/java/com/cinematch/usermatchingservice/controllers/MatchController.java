@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,8 @@ import com.cinematch.usermatchingservice.repositories.MatchRepository;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
-@RequestMapping("/matches")
+@RequestMapping("/api/matches")
+@CrossOrigin(origins = "http://localhost:5173/")
 public class MatchController {
     
     private MatchRepository matchRepository;

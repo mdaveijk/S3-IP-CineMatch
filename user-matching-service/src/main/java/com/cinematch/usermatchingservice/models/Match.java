@@ -2,7 +2,6 @@ package com.cinematch.usermatchingservice.models;
 
 import java.util.List;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -13,14 +12,13 @@ import com.cinematch.usermatchingservice.enums.Status;
 public class Match {
     
     @Id
-    private String id;
+    protected String id; //Match id
 
-    private int userId1;
-    private int userId2;
+    protected int userId1;
+    protected int userId2;
     
-    @DBRef
-    private List<Preference> matchCriteria;
-    
+    protected List<String> matchCriteria;
+
     @Field
     private Status status;
 
@@ -40,11 +38,11 @@ public class Match {
         this.userId2 = userId2;
     }
     
-    public List<Preference> getMatchCriteria() {
+    public List<String> getMatchCriteria() {
         return matchCriteria;
     }
     
-    public void setMatchCriteria(List<Preference> matchCriteria) {
+    public void setMatchCriteria(List<String> matchCriteria) {
         this.matchCriteria = matchCriteria;
     }
     
@@ -63,11 +61,4 @@ public class Match {
         this.userId2 = userId2;
         this.status = status;
     }
-
-    // public Match(int userId1, int userId2, List<Preference> matchCriteria, Status status) {
-    //     this.userId1 = userId1;
-    //     this.userId2 = userId2;
-    //     this.matchCriteria = matchCriteria;
-    //     this.status = status;
-    // }
 }
