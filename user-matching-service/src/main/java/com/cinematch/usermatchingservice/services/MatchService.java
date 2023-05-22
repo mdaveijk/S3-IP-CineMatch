@@ -2,8 +2,6 @@ package com.cinematch.usermatchingservice.services;
 
 import java.util.List;
 
-import org.apache.hc.core5.http.NotImplementedException;
-import org.springframework.web.client.HttpServerErrorException.NotImplemented;
 
 import com.cinematch.usermatchingservice.models.Match;
 import com.cinematch.usermatchingservice.repositories.MatchRepository;
