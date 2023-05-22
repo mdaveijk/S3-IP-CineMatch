@@ -1,6 +1,6 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-name: Java CI with Maven
+name: Main
 on:
   push:
     branches: [ main ]
@@ -8,6 +8,12 @@ on:
     branches: [ main ]
 jobs:
   build:
+    strategy:
+      matrix:
+        service: [user-data-service, user-preferences-service, user-matching-service, discovery-server, api-gateway]
+  
+  
+  
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,5 +23,5 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build user-matching-service with Maven
-      run: mvn -B package --file user-matching-service/pom.xml
+    - name: Build ${{ matrix.service }} with Maven
+      run: mvn -B package --file ${{ matrix.service }}/pom.xml
