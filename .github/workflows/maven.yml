@@ -31,7 +31,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build user-matching-service with Maven
-      run: mvn -B package --file user-matching-service/pom.xml
+      run: mvn -B package --file pom.xml
       working-directory: user-matching-service
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
