@@ -65,8 +65,6 @@ public class MatchController {
         return ResponseEntity.ok(matches);
     }
 
-
-    //TODO remove this, we don't want a POST for the matching microservice.
     @PostMapping
     ResponseEntity<Match> createMatch(@Validated @RequestBody Match match) throws URISyntaxException {
         Match result = matchRepository.save(match);
