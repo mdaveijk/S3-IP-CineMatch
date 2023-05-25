@@ -3,7 +3,6 @@ package com.cinematch.userpreferencesservice.controllers;
 import java.net.URISyntaxException;
 import java.util.Collection;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
