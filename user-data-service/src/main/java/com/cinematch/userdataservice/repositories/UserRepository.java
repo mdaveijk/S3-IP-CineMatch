@@ -7,5 +7,5 @@ import com.cinematch.userdataservice.models.User;
 
 @RepositoryRestResource
 public interface UserRepository extends CrudRepository<User, Long> {
-    
+
 }
