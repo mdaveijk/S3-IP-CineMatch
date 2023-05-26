@@ -10,8 +10,6 @@ public class UserPreferences {
     @Id
     private Long userId;
 
-    // @DocumentReference
-    // private List<Preference> preferences;
     private List<String> preferences;
 
     private String location;
