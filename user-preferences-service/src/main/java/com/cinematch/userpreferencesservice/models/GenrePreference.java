@@ -1,7 +1,5 @@
 package com.cinematch.userpreferencesservice.models;
 
-import java.util.List;
-
 public class GenrePreference extends Preference {
     
     private String genre;
@@ -19,8 +17,7 @@ public class GenrePreference extends Preference {
         super();
     }
 
-    public GenrePreference(List<String> preferences, String genre) {
-        super(preferences);
+    public GenrePreference(String genre) {
         this.genre = genre;
     }
 }

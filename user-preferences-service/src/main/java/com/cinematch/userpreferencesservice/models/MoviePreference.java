@@ -1,6 +1,5 @@
 package com.cinematch.userpreferencesservice.models;
 
-import java.util.List;
 
 public class MoviePreference extends Preference {
 
@@ -14,15 +13,13 @@ public class MoviePreference extends Preference {
         this.title = title;
     }
 
-    public MoviePreference(List<String> preferences, String title) {
-        super(preferences);
+    public MoviePreference(String title) {
         this.title = title;
     }
 
 
-    public MoviePreference(List<String> name) {
-        super(name);
-
+    public MoviePreference() {
+        super();
     }
     
 }
