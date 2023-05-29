@@ -12,8 +12,6 @@ jobs:
       matrix:
         service: [user-data-service, user-preferences-service, user-matching-service, discovery-server, api-gateway]
   
-  
-  
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
