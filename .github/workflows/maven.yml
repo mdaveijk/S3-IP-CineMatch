@@ -39,6 +39,6 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn -B verify --file ${{ matrix.service }}/pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=S3-IP-CineMatch_${{ matrix.service }}
+      run: mvn -B verify --file ${{ matrix.service }}/pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=S3-IP-CineMatch
     - name: Build ${{ matrix.service }} with Maven
       run: mvn -B package --file ${{ matrix.service }}/pom.xml
