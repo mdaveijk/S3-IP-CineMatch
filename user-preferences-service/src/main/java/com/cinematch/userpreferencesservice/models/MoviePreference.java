@@ -1,12 +1,25 @@
 package com.cinematch.userpreferencesservice.models;
 
-import java.util.List;
 
 public class MoviePreference extends Preference {
 
-    public MoviePreference(List<String> name) {
-        super(name);
+    private String title;
 
+    public String getTitle() {
+        return title;
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public MoviePreference(String title) {
+        this.title = title;
+    }
+
+
+    public MoviePreference() {
+        super();
     }
     
 }
