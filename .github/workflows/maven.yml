@@ -42,3 +42,9 @@ jobs:
       run: mvn -B verify --file ${{ matrix.service }}/pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=cinematch_${{ matrix.service }}
     - name: Build ${{ matrix.service }} with Maven
       run: mvn -B package --file ${{ matrix.service }}/pom.xml
+    - name: Upload ${{ matrix.service }} jar
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.service }}
+        path: ./${{ matrix.service }}/target/*.jar
+        retention-days: 1
