@@ -34,14 +34,14 @@ public class PreferencesController {
     }
 
     // Brief summary of the endpoint
-    @Operation(summary = "Get a list of all matches.")
+    @Operation(summary = "Get a list of all user preferences.")
     @GetMapping
     Collection<UserPreferences> allPreferences() {
-        return (Collection<UserPreferences>) repository.findAll();
+        return repository.findAll();
     }
 
     @PostMapping
-    ResponseEntity<UserPreferences> createUserPreferences(@Validated @RequestBody UserPreferences userPreferences) throws URISyntaxException {
+    ResponseEntity<UserPreferences> createUserPreferences(@Validated @RequestBody UserPreferences userPreferences) {
         UserPreferences result = repository.save(userPreferences);
         return ResponseEntity.ok().body(result);
     }

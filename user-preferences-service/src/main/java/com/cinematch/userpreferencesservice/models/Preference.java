@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 })
 public abstract class Preference {
 
-    public Preference() {
+    protected Preference() {
 
     }
 

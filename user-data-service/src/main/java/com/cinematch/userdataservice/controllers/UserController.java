@@ -1,6 +1,5 @@
 package com.cinematch.userdataservice.controllers;
 
-import java.net.URISyntaxException;
 import java.util.Collection;
 
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@Validated @RequestBody User user) throws URISyntaxException {
+    public ResponseEntity<User> createUser(@Validated @RequestBody User user) {
         User result = repository.save(user);
         return ResponseEntity.ok().body(result);
     }
