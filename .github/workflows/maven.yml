@@ -12,7 +12,7 @@ env:
       # Use ghcr.io for GitHub packages
       REGISTRY: docker.io
       # github.repository as <account>/<repo>
-      IMAGE_NAME_PREFIX: mdaveijk/S3-IP-Cinematch-
+      IMAGE_NAME_PREFIX: mschippers/cinematch-
 
 jobs:
   build:
@@ -110,5 +110,5 @@ jobs:
           context: ./${{ matrix.service }}
           file: ./${{ matrix.service }}/Dockerfile
           push: true
-          tags: mschippers/cinematch:${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
