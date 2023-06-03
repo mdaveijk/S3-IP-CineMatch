@@ -110,5 +110,5 @@ jobs:
           context: ./${{ matrix.service }}
           file: ./${{ matrix.service }}/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: mschippers/cinematch:${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
