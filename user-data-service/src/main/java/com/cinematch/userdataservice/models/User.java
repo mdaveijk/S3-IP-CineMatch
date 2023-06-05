@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="users")
 public class User {
-    private @Id @GeneratedValue Long userId;
+    private @Id @GeneratedValue Long id;
 
     private String firstName;
     private String lastName;
@@ -16,11 +16,11 @@ public class User {
     private String displayName;
     private String profilePicture;
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
     public void setUserId(Long userId) {
-        this.userId = userId;
+        this.id = userId;
     }
     public String getFirstName() {
         return firstName;
