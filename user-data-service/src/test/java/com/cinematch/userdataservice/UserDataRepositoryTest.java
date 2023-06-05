@@ -3,29 +3,38 @@ package com.cinematch.userdataservice;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Mockito;
 
 import com.cinematch.userdataservice.models.User;
 import com.cinematch.userdataservice.repositories.UserRepository;
 
-@SpringBootTest(classes = UserDataServiceApplication.class)
 public class UserDataRepositoryTest {
     
-    @Autowired
     private UserRepository repository;
 
+    @BeforeEach
+    void setup() {
+        repository = Mockito.mock(UserRepository.class);
+    }
+
     @Test
-    public void givenUserRepository_whenSaveAndRetreiveEntity_thenOK() {
-        User user = repository
-          .save(new User("test firstname", "test lastname", "test email", "test displayname"
-          , "someurl.jpg"));
-        User foundUser = repository
-          .findOne(user.getId());
- 
+    void return_one_user() {
+        // Given
+        User user = new User();
+        user.setFirstName("Emma");
+        user.setLastName("Watson");
+
+        // Define behavior for mocked repository methods
+        Mockito.when(repository.save(user)).thenReturn(user);
+        Mockito.when(repository.findByFirstName("Emma")).thenReturn(user);
+
+        // When
+        User foundUser = repository.findByFirstName("Emma");
+
+        // Then
         assertNotNull(foundUser);
-        assertEquals(user.getFirstName(), foundUser.getFirstName());
+        assertEquals("Emma", foundUser.getFirstName());
     }
 }

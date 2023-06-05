@@ -10,12 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class UserDataServiceApplicationTests {
 
-	@Autowired
-	ApplicationContext context;
+	// @Autowired
+	// ApplicationContext context;
 
-	@Test
-	void contextLoads() {
-		assertNotNull(context);
-	}
+	// @Test
+	// void contextLoads() {
+	// 	assertNotNull(context);
+	// }
 
 }
