@@ -1,5 +1,8 @@
 package com.cinematch.userpreferencesservice.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("genre")
 public class GenrePreference extends Preference {
     
     private String genre;
