@@ -1,46 +1,35 @@
 spring:
   application:
     name: api-gateway
-
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+            - GET
+            - POST
+            - PATCH
+            - PUT
+            - DELETE
+      discovery:
+        locator:
+          enabled: true
       routes:
-        - id: user-matching
-          uri: http://localhost:8083
+        - id: openapi
+          uri: http://localhost:${server.port}
           predicates:
-          - Path=/api/matches/**
+          - Path=/v3/api-docs/**
+          filters:
+          - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
 
-
-# spring:
-#   cloud:
-#     gateway:
-#       globalcors:
-#         cors-configurations:
-#           '[/**]':
-#             allowedOrigins: "*"
-#             allowedMethods:
-#             - GET
-#             - POST
-#             - PATCH
-#             - PUT
-#             - DELETE
-#       discovery:
-#         locator:
-#           enabled: true
-#       routes:
-#       - id: openapi
-#         uri: http://localhost:${server.port}
-#         predicates:
-#         - Path=/v3/api-docs/**
-#         filters:
-#         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
-
-# springdoc:
-#   swagger-ui:
-#     urls:
-#       - name: user-data
-#         url: /v3/api-docs/user-data-service
-#       - name: user-preferences
-#         url: /v3/api-docs/user-preferences-service
-#       - name: user-matching
-#         url: /v3/api-docs/user-matching-service
+springdoc:
+  swagger-ui:
+    urls:
+      - name: user-data
+        url: /v3/api-docs/user-data-service
+      - name: user-preferences
+        url: /v3/api-docs/user-preferences-service
+      - name: user-matching
+        url: /v3/api-docs/user-matching-service
