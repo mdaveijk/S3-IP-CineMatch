@@ -38,6 +38,13 @@ spring:
         locator:
           enabled: true
       routes:
+        - id: user-matching-route
+          uri: ${USER_MATCHING_SERVICE_URL:http://localhost:8083}
+          predicates:
+            - Path=/api/matches/**
+          filters:
+            - AddRequestHeader=X-Tenant,acme
+            - AddResponseHeader=X-Genre,fantasy
         - id: openapi
           uri: http://localhost:${server.port}
           predicates:
