@@ -1,8 +1,29 @@
 spring:
   application:
     name: api-gateway
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: api-gateway
+            client-secret: 9MNFEz2yO7IoBidv8nRN4x5L8aLhJaS3
+            scope: openid
+        provider:
+          keycloak:
+            user-name-attribute: preferred_username
+            issuer-uri: ${KEYCLOAK_URL:http://localhost:8079}/realms/SpringBootKeycloak 
   cloud:
     gateway:
+      default-filters:
+        - SaveSession
+        - TokenRelay
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter:
+              replenishRate: 10
+              burstCapacity: 20
+              requestedTokens: 1
       globalcors:
         cors-configurations:
           '[/**]':
