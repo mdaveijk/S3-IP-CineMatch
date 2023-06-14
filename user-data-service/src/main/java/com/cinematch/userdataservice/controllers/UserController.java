@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cinematch.userdataservice.models.User;
 import com.cinematch.userdataservice.repositories.UserRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "http://localhost:5173/")
@@ -25,6 +27,8 @@ public class UserController {
         this.repository = repository;
     }
 
+    //Brief summary of the endpoint
+    @Operation(summary = "Get a list of all users.")
     @GetMapping
     public Collection<User> users()    {
         return (Collection<User>) repository.findAll();
