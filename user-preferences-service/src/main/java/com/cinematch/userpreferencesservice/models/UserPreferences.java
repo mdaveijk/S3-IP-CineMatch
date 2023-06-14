@@ -10,7 +10,7 @@ public class UserPreferences {
     @Id
     private Long userId;
 
-    private List<Preference> preferences;
+    private List<String> preferences;
 
     private String location;
 
@@ -22,11 +22,11 @@ public class UserPreferences {
         this.userId = userId;
     }
 
-    public List<Preference> getPreferences() {
+    public List<String> getPreferences() {
         return preferences;
     }
 
-    public void setPreferences(List<Preference> preferences) {
+    public void setPreferences(List<String> preferences) {
         this.preferences = preferences;
     }
 
@@ -42,7 +42,7 @@ public class UserPreferences {
         
     }
 
-    public UserPreferences(Long id, List<Preference> preferences, String location) {
+    public UserPreferences(Long id, List<String> preferences, String location) {
         this.userId = id;
         this.preferences = preferences;
         this.location = location;
