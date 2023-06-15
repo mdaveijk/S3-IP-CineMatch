@@ -10,12 +10,12 @@ import org.springframework.context.ApplicationContext;
 @SpringBootTest
 class ApiGatewayApplicationTests {
 
-	// @Autowired
-	// ApplicationContext context;
+	@Autowired
+	ApplicationContext context;
 
-	// @Test
-	// void contextLoads() {
-	// 	assertNotNull(context);
-	// }
+	@Test
+	void contextLoads() {
+		assertNotNull(context);
+	}
 
 }
