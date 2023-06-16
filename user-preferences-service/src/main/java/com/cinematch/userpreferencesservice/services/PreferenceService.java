@@ -1,8 +1,8 @@
 package com.cinematch.userpreferencesservice.services;
 
 import java.util.Collection;
+import java.util.Optional;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cinematch.userpreferencesservice.models.UserPreferences;
@@ -23,10 +23,20 @@ public class PreferenceService {
         return this.userPreferences;
     }
 
+    public UserPreferences getOneSetOfUserPreferencesById(Long id) {
+        Optional<UserPreferences> optionalPreferences = repository.findById(id);
+        if (optionalPreferences.isPresent()) {
+            return optionalPreferences.get();
+        } else {
+            return null;
+        }
+    }
+
+
     public UserPreferences createUserPreferences(UserPreferences userPreferences) {
         // Validate the location
         if (!isLocationValid(userPreferences.getLocation())) {
-            throw new IllegalArgumentException("Invalid location");
+            throw new IllegalArgumentException("A location can only contain characters.");
         }
 
         // Save the user preferences
@@ -39,29 +49,17 @@ public class PreferenceService {
             return false;
         }
 
-        // Check if the location contains numbers
-        if (containsNumbers(location)) {
-            return false;
-        }
-
-        // Check if the location contains special characters
-        if (containsSpecialCharacters(location)) {
+        // Make sure the location only contains characters
+        if(!containsOnlyAlphabetCharacters(location)){
             return false;
         }
 
         return true;
     }
 
-    private boolean containsNumbers(String location) {
-        // Regular expression pattern to match any digit
-        String regex = ".*\\d.*";
-        return location.matches(regex);
-    }
-
-    //TODO this method does not work properly
-    private boolean containsSpecialCharacters(String location) {
-        // Regular expression pattern to match special characters
-        String regex = "[^A-Za-z0-9]";
+    private boolean containsOnlyAlphabetCharacters(String location) {
+        // Regular expression pattern to match only alphabet characters
+        String regex = "^[a-zA-Z]+$";
         return location.matches(regex);
     }
 

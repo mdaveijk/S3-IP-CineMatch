@@ -41,11 +41,11 @@ spring:
         - id: user-data-route
           uri: ${USER_DATA_SERVICE_URL:http://localhost:8081}
           predicates:
-            - Path=/api/user-data/**
+            - Path=/api/users/**
         - id: user-preferences-route
           uri: ${USER_PREFERENCES_SERVICE_URL:http://localhost:8082}
           predicates:
-            - Path=/api/user-preferences/**
+            - Path=/api/userpreferences/**
         - id: user-matching-route
           uri: ${USER_MATCHING_SERVICE_URL:http://localhost:8083}
           predicates:
