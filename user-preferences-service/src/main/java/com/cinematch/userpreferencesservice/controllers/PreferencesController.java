@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cinematch.userpreferencesservice.models.UserPreferences;
 import com.cinematch.userpreferencesservice.repositories.PreferencesRepository;
+import com.cinematch.userpreferencesservice.services.PreferenceService;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -20,23 +21,30 @@ import io.swagger.v3.oas.annotations.Operation;
 @CrossOrigin(origins = "http://localhost:5173/")
 public class PreferencesController {
 
+    private PreferenceService service;
 
-    private PreferencesRepository repository;
-
-    public PreferencesController(PreferencesRepository repository) {
-        this.repository = repository;
+    public PreferencesController(PreferenceService service) {
+        this.service = service;
     }
 
     // Brief summary of the endpoint
     @Operation(summary = "Get a list of all user preferences.")
     @GetMapping
     Collection<UserPreferences> allPreferences() {
-        return repository.findAll();
+        return service.getAllPreferences();
     }
 
     @PostMapping
     ResponseEntity<UserPreferences> createUserPreferences(@Validated @RequestBody UserPreferences userPreferences) {
-        UserPreferences result = repository.save(userPreferences);
-        return ResponseEntity.ok().body(result);
+           ResponseEntity<UserPreferences> response;
+    
+    if (service.isLocationValid(userPreferences.getLocation())) {
+        UserPreferences result = service.createUserPreferences(userPreferences);
+        response = ResponseEntity.ok().body(result);
+        } else {
+            response = ResponseEntity.badRequest().build();
+        }
+        
+        return response;
     }
 }

@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 public class Match {
     
     @Id
-    protected String id; //Match id
+    protected Long id; //Match id
 
     @NotNull
     protected int userId1;
