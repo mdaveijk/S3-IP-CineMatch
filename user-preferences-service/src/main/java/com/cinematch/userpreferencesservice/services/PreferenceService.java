@@ -55,7 +55,7 @@ public class PreferenceService {
         return true;
     }
 
-    private boolean containsOnlyAlphabetCharacters(String location) {
+    public boolean containsOnlyAlphabetCharacters(String location) {
         // Regular expression pattern to match only alphabet characters
         String regex = "^[a-zA-Z]+$";
         return location.matches(regex);
