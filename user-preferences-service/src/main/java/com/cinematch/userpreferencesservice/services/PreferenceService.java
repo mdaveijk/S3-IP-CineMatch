@@ -12,15 +12,13 @@ import com.cinematch.userpreferencesservice.repositories.PreferencesRepository;
 public class PreferenceService {
 
     private PreferencesRepository repository;
-    private Collection<UserPreferences> userPreferences;
 
     public PreferenceService(PreferencesRepository repository) {
         this.repository = repository;
-        this.userPreferences = this.repository.findAll();
     }
 
     public Collection<UserPreferences> getAllPreferences() {
-        return this.userPreferences;
+        return this.repository.findAll();
     }
 
     public UserPreferences getOneSetOfUserPreferencesById(Long id) {
