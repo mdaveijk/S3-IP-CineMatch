@@ -17,7 +17,6 @@ public interface MatchRepository extends MongoRepository<Match, String> {
     
     Optional<Match> findById(@Param("id") String id);
 
-    Match findByUserId1AndUserId2(int userId1, int userId2);
-
+    Match findByUserId1InAndUserId2In(int userId1, int userId2);
 
 }
