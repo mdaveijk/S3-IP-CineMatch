@@ -103,7 +103,7 @@ To interact with the CineMatch project's API, follow these steps:
 2. Open a web browser and navigate to the following URL: `http://localhost:8080/webjars/swagger-ui/index.html`
 
    This URL will provide access to the API documentation and the UI created by [OpenAPI](https://springdoc.org/).
-   You can switch to different services by using the menu in the top-right corner: <!-- TODO upload image -->
+   You can switch to different services by using the menu in the top-right corner: ![api documentation](https://github.com/mdaveijk/S3-Portfolio/blob/main/Media/api-documentation.png)
 
 3. Explore the available endpoints, request parameters, and response formats in the API documentation.
 

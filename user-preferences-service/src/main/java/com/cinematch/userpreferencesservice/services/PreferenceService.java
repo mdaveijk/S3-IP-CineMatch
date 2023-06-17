@@ -63,4 +63,14 @@ public class PreferenceService {
         return location.matches(regex);
     }
 
+    public UserPreferences updateUserPreferences(UserPreferences existingPreferences) {
+        UserPreferences updatedPreferences = repository.save(existingPreferences);
+
+        return updatedPreferences;
+    }
+
+    public void deleteUserPreferences(UserPreferences existingPreferences) {
+        repository.delete(existingPreferences);
+    }
+
 }

@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 public class Match {
     
     @Id
-    protected Long id; //Match id
+    protected String id; //Match id
 
     @NotNull
     protected int userId1;
@@ -60,9 +60,15 @@ public class Match {
     
     public Match() {} //Empty constructor to allow Spring Data to create new resources
     
-    public Match(int userId1, int userId2, Status status) {
+    public Match(int userId1, int userId2, List<String> matchCriteria, Status status) {
         this.userId1 = userId1;
         this.userId2 = userId2;
+        this.matchCriteria = matchCriteria;
+        this.status = status;
+    }
+
+    public Match(List<String> matchCriteria, Status status){
+        this.matchCriteria = matchCriteria;
         this.status = status;
     }
 }

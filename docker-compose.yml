@@ -3,14 +3,24 @@ version: "3.8"
 services:
 
   mariadb: 
-    image: mariadb
-    volumes:
-      - mariadb-data:/var/lib/mysql
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: user-data
+      MYSQL_USER: cinematch
+      MYSQL_PASSWORD: cinematchpw
+    ports: 
+      - 3306:3306 
 
   mongo-db:
-    image: mongo
+    image: mongo:latest
     volumes:
       - mongodb-data:/data/db
+
+  discovery-server:
+    image: mschippers/cinematch-discovery-server:main
+    ports:
+      - ${EUREKA_PORT:-8761}:8761
 
   api-gateway:
     image: mschippers/cinematch-api-gateway:main
@@ -19,13 +29,14 @@ services:
     environment:
       - SERVICE_URL_DEFAULT_ZONE=http://discovery-server:8761/eureka
   
-  # TODO SECTION INCOMPLETE
-  # user-data-service:
-  #   image: mschippers/cinematch-user-data-service:main
-  #   environment:
-  #     # - SPRING_DATA_MONGODB_URI=mongodb://mongo-db/user-data
-  #     - sql
-  #     - SERVICE_URL_DEFAULT_ZONE=http://discovery-server:8761/eureka
+  user-data-service:
+    image: mschippers/cinematch-user-data-service:main
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/user-data
+      - SPRING_DATASOURCE_USERNAME=cinematch
+      - SPRING_DATASOURCE_PASSWORD=cinematchpw
+      - SPRING_DATASOURCE_ROOT_PASSWORD=admin
+      - SERVICE_URL_DEFAULT_ZONE=http://discovery-server:8761/eureka
 
   user-preferences-service:
     image: mschippers/cinematch-user-preferences-service:main
@@ -38,11 +49,6 @@ services:
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongo-db/user-matching
       - SERVICE_URL_DEFAULT_ZONE=http://discovery-server:8761/eureka
-
-  discovery-server:
-    image: mschippers/cinematch-discovery-server:main
-    ports:
-      - ${EUREKA_PORT:-8761}:8761
 
 volumes:
   mariadb-data:
