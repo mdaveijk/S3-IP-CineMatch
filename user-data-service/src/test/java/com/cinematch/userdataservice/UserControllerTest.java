@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +16,9 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.cinematch.userdataservice.controllers.UserController;
 import com.cinematch.userdataservice.models.User;
@@ -31,17 +33,8 @@ public class UserControllerTest {
     @MockBean
     private UserService userService;
 
-    @BeforeEach
-    void setup() {
-        User user = new User("John", "Doe", "john.doe@example.com", "JohnD", "https://example.com/profile.jpg");
-
-        // Add the user to the database or repository before the test
-        // For example, using the userService or userRepository
-        userService.createUser(user);
-    }
-
     @Test
-    public void getAllUsersShouldShowActualAmount() throws Exception {
+    public void getAllUsersShouldReturnOK() throws Exception {
         User user1 = new User("John", "Doe", "john.doe@example.com", "JohnD", "https://example.com/profile1.jpg");
         User user2 = new User("Jane", "Smith", "jane.smith@example.com", "JaneS", "https://example.com/profile2.jpg");
 
@@ -56,7 +49,25 @@ public class UserControllerTest {
 
     @Test
     public void NoUsersShouldReturnNoContent() throws Exception {
-        //todo
+        when(userService.getAllUsers()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/api/users"))
+                .andExpect(status().isNoContent())
+                .andReturn();
+    }
+
+    @Test
+    public void createUserShouldReturnCreated() throws Exception {
+        User user = new User("John", "Doe", "john.doe@example.com", "JohnD", "https://example.com/profile.jpg");
+
+        when(userService.createUser(Mockito.any(User.class))).thenReturn(user);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                        "{\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"displayName\":\"JohnD\",\"profilePicture\":\"https://example.com/profile.jpg\"}"))
+                .andExpect(status().isCreated())
+                .andReturn();
     }
 
     @Test
@@ -74,4 +85,18 @@ public class UserControllerTest {
                 .andReturn();
     }
 
+    @Test
+    public void updatePutUserShouldReturnOk() throws Exception {
+        Long userId = 1L;
+        User user = new User("John", "Doe", "john.doe@example.com", "JohnD", "https://example.com/profile.jpg");
+
+        when(userService.updateUser(Mockito.eq(userId), Mockito.any(User.class))).thenReturn(user);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/users/{id}", userId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                        "{\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"displayName\":\"JohnD\",\"profilePicture\":\"https://example.com/profile.jpg\"}"))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
 }
