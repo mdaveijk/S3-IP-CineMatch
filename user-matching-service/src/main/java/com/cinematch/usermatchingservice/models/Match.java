@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.cinematch.usermatchingservice.enums.Status;
 
+import jakarta.validation.constraints.NotNull;
+
 
 @Document(collection = "matches")
 public class Match {
@@ -14,7 +16,9 @@ public class Match {
     @Id
     protected String id; //Match id
 
+    @NotNull
     protected int userId1;
+    @NotNull
     protected int userId2;
     
     protected List<String> matchCriteria;
@@ -56,9 +60,15 @@ public class Match {
     
     public Match() {} //Empty constructor to allow Spring Data to create new resources
     
-    public Match(int userId1, int userId2, Status status) {
+    public Match(int userId1, int userId2, List<String> matchCriteria, Status status) {
         this.userId1 = userId1;
         this.userId2 = userId2;
+        this.matchCriteria = matchCriteria;
+        this.status = status;
+    }
+
+    public Match(List<String> matchCriteria, Status status){
+        this.matchCriteria = matchCriteria;
         this.status = status;
     }
 }

@@ -1,29 +1,29 @@
 spring:
   application:
     name: api-gateway
-  security:
-    oauth2:
-      client:
-        registration:
-          keycloak:
-            client-id: api-gateway
-            client-secret: 9MNFEz2yO7IoBidv8nRN4x5L8aLhJaS3
-            scope: openid
-        provider:
-          keycloak:
-            user-name-attribute: preferred_username
-            issuer-uri: ${KEYCLOAK_URL:http://localhost:8079}/realms/SpringBootKeycloak 
+  # security:
+  #   oauth2:
+  #     client:
+  #       registration:
+  #         keycloak:
+  #           client-id: api-gateway
+  #           client-secret: 9MNFEz2yO7IoBidv8nRN4x5L8aLhJaS3
+  #           scope: openid
+  #       provider:
+  #         keycloak:
+  #           user-name-attribute: preferred_username
+  #           issuer-uri: ${KEYCLOAK_URL:http://localhost:8079}/realms/SpringBootKeycloak 
   cloud:
     gateway:
-      default-filters:
-        - SaveSession
-        - TokenRelay
-        - name: RequestRateLimiter
-          args:
-            redis-rate-limiter:
-              replenishRate: 10
-              burstCapacity: 20
-              requestedTokens: 1
+      # default-filters:
+      #   - SaveSession
+      #   - TokenRelay
+      #   - name: RequestRateLimiter
+      #     args:
+      #       redis-rate-limiter:
+      #         replenishRate: 10
+      #         burstCapacity: 20
+      #         requestedTokens: 1
       globalcors:
         cors-configurations:
           '[/**]':
@@ -41,23 +41,15 @@ spring:
         - id: user-data-route
           uri: ${USER_DATA_SERVICE_URL:http://localhost:8081}
           predicates:
-            - Path=/api/user-data/**
-          filters:
-            - AddRequestHeader=X-Tenant,acme
-            - AddResponseHeader=X-Genre,fantasy
+            - Path=/api/users/**
         - id: user-preferences-route
           uri: ${USER_PREFERENCES_SERVICE_URL:http://localhost:8082}
           predicates:
-            - Path=/api/user-preferences/**
-          filters:
-            - AddRequestHeader=X-Tenant,acme
-            - AddResponseHeader=X-Genre,fantasy
+            - Path=/api/userpreferences/**
         - id: user-matching-route
           uri: ${USER_MATCHING_SERVICE_URL:http://localhost:8083}
           predicates:
             - Path=/api/matches/**
-          filters:
-            - AddRequestHeader=Authorization,Bearer <access_token>
         - id: openapi
           uri: http://localhost:${server.port}
           predicates:
