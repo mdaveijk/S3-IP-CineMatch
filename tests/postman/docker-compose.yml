@@ -8,19 +8,19 @@ services:
       - mongodb-data:/data/db
 
   discovery-server:
-    image: mschippers/cinematch-discovery-server:${PR_TAG}
+    image: mschippers/cinematch-discovery-server:pr-11
     ports:
       - ${EUREKA_PORT:-8761}:8761
 
   api-gateway:
-    image: mschippers/cinematch-api-gateway:${PR_TAG}
+    image: mschippers/cinematch-api-gateway:pr-11
     ports:
       - ${GATEWAY_PORT:-8080}:8080
     environment:
       - SERVICE_URL_DEFAULT_ZONE=http://discovery-server:8761/eureka
 
   user-matching-service:
-    image: mschippers/cinematch-user-matching-service:${PR_TAG}
+    image: mschippers/cinematch-user-matching-service:pr-11
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongo-db/user-matching
       - SERVICE_URL_DEFAULT_ZONE=http://discovery-server:8761/eureka

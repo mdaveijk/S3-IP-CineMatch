@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "7b1d7533-efda-42ae-8dc0-a6a4da7afe3b",
+		"_postman_id": "31559b8b-6a0f-462c-b59c-80202de31f40",
 		"name": "matches",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "27984857"
 	},
 	"item": [
@@ -42,7 +42,12 @@
 							"mode": "raw",
 							"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"ACTIVE\"\r\n}"
 						},
-						"url": "{{baseUrl}}{{prefix}}"
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							]
+						}
 					},
 					"response": [
 						{
@@ -142,7 +147,12 @@
 									"mode": "raw",
 									"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"wrong status\"\r\n}"
 								},
-								"url": "{{baseUrl}}{{prefix}}"
+								"url": {
+									"raw": "{{baseUrl}}{{prefix}}",
+									"host": [
+										"{{baseUrl}}{{prefix}}"
+									]
+								}
 							},
 							"status": "Bad Request",
 							"code": 400,
@@ -208,9 +218,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJwWnp1UllNVzA3WnR5Zko3eFc5WFUzUVZNdldvMU1TQ3ZUTVgydjVVMnRZIn0.eyJleHAiOjE2ODY4MzY5NTMsImlhdCI6MTY4NjgzNjY1MywianRpIjoiMjE3NzFjNTUtYzQ2Ny00OWQ2LTg0N2YtOWQ4NmVjMTUzNjBkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDc5L3JlYWxtcy9TcHJpbmdCb290S2V5Y2xvYWsiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZDUwOTVmZjQtYTZiYS00Yjk3LTkyMGMtZjc0MmJmOTBjOGQxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYXBpLWdhdGV3YXkiLCJzZXNzaW9uX3N0YXRlIjoiNTJhYjQxY2YtOTM5ZC00YzU0LTllNDQtYjBlZmYxNGEzYjY3IiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtc3ByaW5nYm9vdGtleWNsb2FrIiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNTJhYjQxY2YtOTM5ZC00YzU0LTllNDQtYjBlZmYxNGEzYjY3IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWF1cmljZSBTY2hpcHBlcnMiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtYXVyaWNlQGZvbnR5cy5ubCIsImdpdmVuX25hbWUiOiJNYXVyaWNlIiwiZmFtaWx5X25hbWUiOiJTY2hpcHBlcnMiLCJlbWFpbCI6Im1hdXJpY2VAZm9udHlzLm5sIn0.dK465MJnVl-kjkAFM3S4ODODtMqaaUBGSg5ZXTvYm4CM-XUXF-dgEZi3QbzkkiXrUlmjY_SAX08hSn9BzMDFk_Y8hy8tQaeAjhPlthEoW_3-UDDC0czZY-YdYJsrDGGudPHLFipqjNIniLZB7kifmTwmAMREbni2DUz6RS-bqO8pS5KntqjnvIkQgiD1xMwCnaJkEJkLeWndZBuiYoDZP_jvsYe_DZ8sw0IfAIg1RuPQTKgSbfr2IpoIWz8p5vQZmsHtfC8E_M3o2dD5iMfgQke0pKaRz7OZpqbFi2X5b3b-JvWBxqt8qj3scAivGPJzMOnn1-JXOIFGVHI6-ppC_w"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJwWnp1UllNVzA3WnR5Zko3eFc5WFUzUVZNdldvMU1TQ3ZUTVgydjVVMnRZIn0.eyJleHAiOjE2ODY4MzY5NTMsImlhdCI6MTY4NjgzNjY1MywianRpIjoiMjE3NzFjNTUtYzQ2Ny00OWQ2LTg0N2YtOWQ4NmVjMTUzNjBkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDc5L3JlYWxtcy9TcHJpbmdCb290S2V5Y2xvYWsiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZDUwOTVmZjQtYTZiYS00Yjk3LTkyMGMtZjc0MmJmOTBjOGQxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYXBpLWdhdGV3YXkiLCJzZXNzaW9uX3N0YXRlIjoiNTJhYjQxY2YtOTM5ZC00YzU0LTllNDQtYjBlZmYxNGEzYjY3IiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtc3ByaW5nYm9vdGtleWNsb2FrIiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNTJhYjQxY2YtOTM5ZC00YzU0LTllNDQtYjBlZmYxNGEzYjY3IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWF1cmljZSBTY2hpcHBlcnMiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtYXVyaWNlQGZvbnR5cy5ubCIsImdpdmVuX25hbWUiOiJNYXVyaWNlIiwiZmFtaWx5X25hbWUiOiJTY2hpcHBlcnMiLCJlbWFpbCI6Im1hdXJpY2VAZm9udHlzLm5sIn0.dK465MJnVl-kjkAFM3S4ODODtMqaaUBGSg5ZXTvYm4CM-XUXF-dgEZi3QbzkkiXrUlmjY_SAX08hSn9BzMDFk_Y8hy8tQaeAjhPlthEoW_3-UDDC0czZY-YdYJsrDGGudPHLFipqjNIniLZB7kifmTwmAMREbni2DUz6RS-bqO8pS5KntqjnvIkQgiD1xMwCnaJkEJkLeWndZBuiYoDZP_jvsYe_DZ8sw0IfAIg1RuPQTKgSbfr2IpoIWz8p5vQZmsHtfC8E_M3o2dD5iMfgQke0pKaRz7OZpqbFi2X5b3b-JvWBxqt8qj3scAivGPJzMOnn1-JXOIFGVHI6-ppC_w",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [
@@ -224,7 +238,12 @@
 							"mode": "raw",
 							"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"ACTIVE\"\r\n}"
 						},
-						"url": "{{baseUrl}}/api/matches"
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							]
+						}
 					},
 					"response": [
 						{
@@ -242,7 +261,16 @@
 									"mode": "raw",
 									"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"ACTIVE\"\r\n}"
 								},
-								"url": "{{baseUrl}}/api/matches"
+								"url": {
+									"raw": "{{baseUrl}}/api/matches",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"matches"
+									]
+								}
 							},
 							"status": "Bad Request",
 							"code": 400,
@@ -556,6 +584,19 @@
 				},
 				{
 					"name": "Injection Request 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -791,15 +832,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/matches?userId1=1&userId2=2",
-							"protocol": "http",
+							"raw": "{{baseUrl}}{{prefix}}?userId1=1&userId2=2",
 							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"matches"
+								"{{baseUrl}}{{prefix}}"
 							],
 							"query": [
 								{
@@ -979,7 +1014,7 @@
 	"variable": [
 		{
 			"key": "prefix",
-			"value": "/api/matches",
+			"value": "/user-matching-service/api/matches",
 			"type": "string"
 		},
 		{
