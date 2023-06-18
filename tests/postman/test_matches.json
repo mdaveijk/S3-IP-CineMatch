@@ -1,0 +1,1025 @@
+{
+	"info": {
+		"_postman_id": "31559b8b-6a0f-462c-b59c-80202de31f40",
+		"name": "matches",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27984857"
+	},
+	"item": [
+		{
+			"name": "matches (s3-individual-project)",
+			"item": [
+				{
+					"name": "PostMatch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code === 201) {\r",
+									"    let requestBody = JSON.parse(pm.request.body.raw);\r",
+									"    pm.collectionVariables.set(\"matchBody\", requestBody);\r",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"ACTIVE\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CREATED",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"ACTIVE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{prefix}}?page=0&size=20",
+									"host": [
+										"{{baseUrl}}{{prefix}}"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 16:20:22 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId1\": 1,\n    \"userId2\": 2,\n    \"matchCriteria\": [\n        \"News from the World\",\n        \"Drama\"\n    ],\n    \"status\": \"ACTIVE\"\n}"
+						},
+						{
+							"name": "Bad Request: Wrong input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"wrong status\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{prefix}}",
+									"host": [
+										"{{baseUrl}}{{prefix}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:34:11 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2023-06-18T18:34:11.410+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/api/matches\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PostMatchAlreadyExists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJwWnp1UllNVzA3WnR5Zko3eFc5WFUzUVZNdldvMU1TQ3ZUTVgydjVVMnRZIn0.eyJleHAiOjE2ODY4MzY5NTMsImlhdCI6MTY4NjgzNjY1MywianRpIjoiMjE3NzFjNTUtYzQ2Ny00OWQ2LTg0N2YtOWQ4NmVjMTUzNjBkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDc5L3JlYWxtcy9TcHJpbmdCb290S2V5Y2xvYWsiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZDUwOTVmZjQtYTZiYS00Yjk3LTkyMGMtZjc0MmJmOTBjOGQxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYXBpLWdhdGV3YXkiLCJzZXNzaW9uX3N0YXRlIjoiNTJhYjQxY2YtOTM5ZC00YzU0LTllNDQtYjBlZmYxNGEzYjY3IiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtc3ByaW5nYm9vdGtleWNsb2FrIiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNTJhYjQxY2YtOTM5ZC00YzU0LTllNDQtYjBlZmYxNGEzYjY3IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWF1cmljZSBTY2hpcHBlcnMiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtYXVyaWNlQGZvbnR5cy5ubCIsImdpdmVuX25hbWUiOiJNYXVyaWNlIiwiZmFtaWx5X25hbWUiOiJTY2hpcHBlcnMiLCJlbWFpbCI6Im1hdXJpY2VAZm9udHlzLm5sIn0.dK465MJnVl-kjkAFM3S4ODODtMqaaUBGSg5ZXTvYm4CM-XUXF-dgEZi3QbzkkiXrUlmjY_SAX08hSn9BzMDFk_Y8hy8tQaeAjhPlthEoW_3-UDDC0czZY-YdYJsrDGGudPHLFipqjNIniLZB7kifmTwmAMREbni2DUz6RS-bqO8pS5KntqjnvIkQgiD1xMwCnaJkEJkLeWndZBuiYoDZP_jvsYe_DZ8sw0IfAIg1RuPQTKgSbfr2IpoIWz8p5vQZmsHtfC8E_M3o2dD5iMfgQke0pKaRz7OZpqbFi2X5b3b-JvWBxqt8qj3scAivGPJzMOnn1-JXOIFGVHI6-ppC_w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"ACTIVE\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request: Duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"News from the World\", \"Drama\"], \r\n    \"status\":\"ACTIVE\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/matches",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"matches"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Description",
+									"value": "This match already exists."
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 16:21:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "GetMatchesAllMatches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Retrieved object contains the right data\", function () {\r",
+									"  let properties = [\"userId1\", \"userId2\", \"matchCriteria\", \"status\"];\r",
+									"  let response = pm.response.json();\r",
+									"  let expected = pm.collectionVariables.get(\"matchBody\");\r",
+									"\r",
+									"    properties.forEach((property) => {\r",
+									"        pm.expect(response.property).to.eql(expected.property);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}?page=0&size=20",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{prefix}}?page=0&size=20",
+									"host": [
+										"{{baseUrl}}{{prefix}}"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:29:31 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"userId1\": 19,\n        \"userId2\": 43,\n        \"matchCriteria\": [\n            \"Harry Potter and The Goblet of Fire\",\n            \"Fantasy\"\n        ],\n        \"status\": \"CLOSED\"\n    },\n    {\n        \"userId1\": 2,\n        \"userId2\": 5,\n        \"matchCriteria\": [\n            \"The Lion King\",\n            \"Eindhoven\"\n        ],\n        \"status\": \"REJECTED\"\n    },\n    {\n        \"userId1\": 617,\n        \"userId2\": 43,\n        \"matchCriteria\": [\n            \"hello\",\n            \"Genre\",\n            \"Location\",\n            \"Within distance\"\n        ],\n        \"status\": \"ACTIVE\"\n    },\n    {\n        \"userId1\": 1,\n        \"userId2\": 4,\n        \"matchCriteria\": [\n            \"testing the put\",\n            \"success\"\n        ],\n        \"status\": \"ACTIVE\"\n    },\n    {\n        \"userId1\": 66,\n        \"userId2\": 67,\n        \"matchCriteria\": [\n            \"delete me\",\n            \"pls\"\n        ],\n        \"status\": \"ACTIVE\"\n    },\n    {\n        \"userId1\": 9,\n        \"userId2\": 67,\n        \"matchCriteria\": [\n            \"delete me\",\n            \"pls\"\n        ],\n        \"status\": \"ACTIVE\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GetMatchByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Compare the response with the saved variable\r",
+									"pm.test(\"Retrieved object is the same as created\", function () {\r",
+									"  let properties = [\"userId1\", \"userId2\", \"matchCriteria\", \"status\"];\r",
+									"  let response = pm.response.json();\r",
+									"  let expected = pm.collectionVariables.get(\"matchBody\");\r",
+									"\r",
+									"  properties.forEach((property) => {\r",
+									"    pm.expect(response[property]).to.eql(expected[property]);\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}/find?userId1=1&userId2=2",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							],
+							"path": [
+								"find"
+							],
+							"query": [
+								{
+									"key": "userId1",
+									"value": "1"
+								},
+								{
+									"key": "userId2",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{prefix}}/find?userId1=1&userId2=2",
+									"host": [
+										"{{baseUrl}}{{prefix}}"
+									],
+									"path": [
+										"find"
+									],
+									"query": [
+										{
+											"key": "userId1",
+											"value": "1"
+										},
+										{
+											"key": "userId2",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:38:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId1\": 1,\n    \"userId2\": 2,\n    \"matchCriteria\": [\n        \"News from the World\",\n        \"Drama\"\n    ],\n    \"status\": \"ACTIVE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Injection Request 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}/find?userId1=1&userId2=function() {var date=new Date(); do{curDate = new Date();}while(curDate-date<10000); }",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							],
+							"path": [
+								"find"
+							],
+							"query": [
+								{
+									"key": "userId1",
+									"value": "1"
+								},
+								{
+									"key": "userId2",
+									"value": "function() {var date=new Date(); do{curDate = new Date();}while(curDate-date<10000); }"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{prefix}}/find?userId1=1&userId2=function() {var date=new Date(); do{curDate = new Date();}while(curDate-date<10000); }",
+									"host": [
+										"{{baseUrl}}{{prefix}}"
+									],
+									"path": [
+										"find"
+									],
+									"query": [
+										{
+											"key": "userId1",
+											"value": "1"
+										},
+										{
+											"key": "userId2",
+											"value": "function() {var date=new Date(); do{curDate = new Date();}while(curDate-date<10000); }"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "content-length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "PutMatch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Compare matchCriteria and status properties between matchBody variable and response\r",
+									"pm.test(\"Compare matchBody with response\", function () {\r",
+									"  let propertiesToCompare = [\"matchCriteria\", \"status\"];\r",
+									"  let response = pm.response.json();\r",
+									"  let expected = pm.collectionVariables.get(\"matchBody\");\r",
+									"\r",
+									"  propertiesToCompare.forEach((property) => {\r",
+									"    pm.expect(response[property]).not.to.eql(expected[property]);\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Save the response as the new matchBody\r",
+									"if (pm.response.code === 200) {\r",
+									"  let responseBody = pm.response.json();\r",
+									"  pm.collectionVariables.set(\"matchBody\", responseBody);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"Postman update\"], \r\n    \"status\":\"CLOSED\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}?userId1=1&userId2=2",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							],
+							"query": [
+								{
+									"key": "userId1",
+									"value": "1"
+								},
+								{
+									"key": "userId2",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId1\":1,\r\n    \"userId2\":2,\r\n    \"matchCriteria\":[\"Postman update\"], \r\n    \"status\":\"CLOSED\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{prefix}}?userId1=1&userId2=2",
+									"host": [
+										"{{baseUrl}}{{prefix}}"
+									],
+									"query": [
+										{
+											"key": "userId1",
+											"value": "1"
+										},
+										{
+											"key": "userId2",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:44:25 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId1\": 1,\n    \"userId2\": 2,\n    \"matchCriteria\": [\n        \"Postman update\"\n    ],\n    \"status\": \"CLOSED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DeleteRequestByUserIds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{prefix}}?userId1=1&userId2=2",
+							"host": [
+								"{{baseUrl}}{{prefix}}"
+							],
+							"query": [
+								{
+									"key": "userId1",
+									"value": "1"
+								},
+								{
+									"key": "userId2",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/matches?userId1=1&userId2=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"matches"
+									],
+									"query": [
+										{
+											"key": "userId1",
+											"value": "1"
+										},
+										{
+											"key": "userId2",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:39:52 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/matches?userId1=1&userId2=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"matches"
+									],
+									"query": [
+										{
+											"key": "userId1",
+											"value": "1"
+										},
+										{
+											"key": "userId2",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Description",
+									"value": "No match between users with ids 1 and 2 could be found."
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 18 Jun 2023 18:53:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "API tests for the user-matching service."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prefix",
+			"value": "/user-matching-service/api/matches",
+			"type": "string"
+		},
+		{
+			"key": "matchBody",
+			"value": ""
+		}
+	]
+}

@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import com.cinematch.userdataservice.models.User;
 import com.cinematch.userdataservice.repositories.UserRepository;
 
-public class UserRepositoryTest {
+class UserRepositoryTest {
     
     private UserRepository repository;
 
