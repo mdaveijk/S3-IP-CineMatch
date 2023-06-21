@@ -11,25 +11,12 @@ import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
 
-// import org.springframework.security.config.Customizer;
-// import org.springframework.security.config.web.server.ServerHttpSecurity;
-// import org.springframework.security.web.server.SecurityWebFilterChain;
-
 @SpringBootApplication
 public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
-
-	// @Bean
-	// SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-	// 	return http
-	// 		.authorizeExchange(exchange -> exchange
-	// 			.anyExchange().authenticated())
-	// 		.oauth2Login(Customizer.withDefaults())
-	// 		.build();
-	// }
 
 	@Autowired
 	RouteDefinitionLocator locator;

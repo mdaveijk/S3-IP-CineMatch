@@ -21,7 +21,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/api/userpreferences")
-@CrossOrigin(origins = "http://localhost:5173/")
 public class PreferencesController {
 
     private PreferenceService service;
