@@ -3,12 +3,14 @@ package com.cinematch.usermatchingservice.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cinematch.usermatchingservice.enums.Status;
 import com.cinematch.usermatchingservice.models.Match;
 import com.cinematch.usermatchingservice.repositories.MatchRepository;
 
 @Service
+@Transactional
 public class MatchService {
 
     private MatchRepository matchRepository;
